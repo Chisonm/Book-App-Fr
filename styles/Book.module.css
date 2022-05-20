@@ -45,6 +45,10 @@
     padding: 1rem;
     border-radius:10px;
 }
+.book__comment_name{
+    font-size: 20px;
+    font-weight: bold;
+}
 .book__comment__flex{
     display: flex;
     gap: 10px;

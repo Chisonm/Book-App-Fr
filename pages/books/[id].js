@@ -4,6 +4,12 @@ import style from '../../styles/Book.module.css'
 function Book({bookData}) {
   const [name, setName] = React.useState("")
   const [comment, setComment] = React.useState("")
+  const [commentList, setCommentList] = React.useState(bookData.comments)
+  const [commentCount, setCommentCount] = React.useState(bookData.comment_count)
+  // set comment default state to bookData.comments
+
+
+ 
 
   const formatDate = (date) => {
     const dateObj = new Date(date)
@@ -15,9 +21,27 @@ function Book({bookData}) {
   }
 
   const submitComment = (e) => {
-    e.preventDefault()
-    console.log(e.target.comment.value)
+    e.preventDefault();
+    let newComment = {
+        name: name,
+        body: comment,
+        book_id: bookData.id
+      }
+     fetch(`https://danielchisom.me/api/comments`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newComment)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
+    setCommentList([...commentList, newComment])
+    setCommentCount(commentCount + 1)
+    setName("")
+    setComment("")
   }
+   
 
   const handleCommentChange = (e) => {
     setComment(e.target.value)
@@ -28,6 +52,7 @@ function Book({bookData}) {
     setName(e.target.value)
     console.log(e.target.value)
   }
+
 
   return (
    <>
@@ -43,23 +68,22 @@ function Book({bookData}) {
       </ul>
     </div>
     <div>
-        <h3 style={{ marginBottom: '10px' }}>Comments</h3>
-        <dv className={style.book__comment__flex}>
-          <div className={style.book__comment}>
-            <span>Daniel</span>
-            <p>we know this book</p>
-          </div>
-          <div className={style.book__comment}>
-            <span>Daniel</span>
-            <p>we know this book</p>
-          </div>
-        </dv>
+        <h3 style={{ marginBottom: '10px' }}>Comments ({commentCount})</h3>
+        <div className={style.book__comment__flex}>
+          {commentList.map(comment => (
+            <div key={comment.id} className={style.book__comment}>
+              <span className={style.book__comment_name}>{comment.name}</span>
+              <p>{comment.body}</p> 
+            </div>
+          ))}
+        </div>
+        
     </div>
 
     <div>
       <h3 style={{ marginBottom: '10px' }}>Comment</h3>
       <div className={style.book__comment__form_wrapper}>
-         <form className={style.book__comment__form} onSubmit={() => submitComment}>
+         <form className={style.book__comment__form} onSubmit={submitComment}>
         <div className={style.book__comment__input__wrapper}>
           <input 
             type="text" 
