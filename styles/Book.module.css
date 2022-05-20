@@ -1,0 +1,104 @@
+.book__card{
+    padding: 1.5rem;
+    text-align: left;
+    border-radius: 5px;
+    background: #fafafa;
+    box-shadow: 0 2px 3px rgba(10,10,10,0.1), 
+                0 0 0 1px rgba(10,10,10,0.1);
+}
+.grid__card{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.book__card:hover,
+.book__card:focus,
+.book__card:active {
+  color: #0070f3;
+  border-color: #0070f3;
+}
+
+.book__single{
+    text-decoration: none;
+    list-style: none;
+    background-color: #fafafa;
+    padding: 2rem;
+    border-radius:10px;
+}
+.book__single li{
+    margin-bottom: 8px;
+    text-align: left;
+}
+.book__single li h2{
+    font-size: 24px;
+    max-width: 400px;
+    font-weight: bold;
+}
+.book__single li span{
+    background: lightblue;
+    padding: 5px;
+    border-radius: 5px;
+}
+.book__comment{
+    background-color: #fafafa;
+    padding: 1rem;
+    border-radius:10px;
+}
+.book__comment__flex{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin-bottom: 50px;
+}
+.book__comment__form_wrapper{
+    margin-bottom: 40px;
+    width: 50%;
+    border: 1px solid #ccc;
+    padding: 20px;
+
+   
+}
+
+
+
+.book__comment__input__wrapper{
+    width: 100%;
+    /* height: 45px; */
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+.book__comment__input__wrapper input{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border: none;
+    outline: none;
+}
+
+.book__comment__input__wrapper textarea{
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+.book__comment__sumbit_btn{
+    width: 100%;
+    height: 45px;
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media(max-width: 768px){
+    .book__comment__form_wrapper{
+        width: 100%;
+    }
+}
