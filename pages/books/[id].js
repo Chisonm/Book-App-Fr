@@ -7,8 +7,11 @@ function Book({bookData}) {
 
   const formatDate = (date) => {
     const dateObj = new Date(date)
-    const formateddate = dateObj.toLocaleString()
-    return formateddate
+    return dateObj.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+    });
   }
 
   const submitComment = (e) => {
