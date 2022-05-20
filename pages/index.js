@@ -6,7 +6,7 @@ import style from '../styles/Book.module.css'
 
 export default function Home() {
 
-  const {books,loading,error} = useContext(BooksContext);
+  const {books,loading} = useContext(BooksContext);
 
   return (
     <div className={style.page__container}>

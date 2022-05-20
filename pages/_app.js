@@ -1,5 +1,4 @@
 import '../styles/globals.css'
-import {ContextProvider} from '../store/booksContext'
 import Layout from '../components/layouts/Layout'
 import { BooksContext, BooksContextProvider } from '../store/booksContext';
 

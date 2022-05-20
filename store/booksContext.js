@@ -16,14 +16,13 @@ const BooksContextProvider = ({ children }) => {
         fetch('https://danielchisom.me/api/books')
           .then(res => res.json())
           .then(data => {
-            setBooks(data.Data);
+            setBooks(data.data);
             setLoading(false);
           })
           .catch(() => {
             setError(true);
             setLoading(false);
           });
-
     };
          fetchBooks();
   }, []);
