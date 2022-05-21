@@ -33,12 +33,19 @@ function Book({ bookData }) {
       body: JSON.stringify(newComment)
     })
       .then(res => res.json())
-      .then((data) => toast.success(data.message))
-
-    setCommentList([...commentList, newComment])
-    setCommentCount(commentCount + 1)
-    setName("")
-    setComment("")
+      .then((data) => {
+        if (data.success) {
+          toast.success(data.message)
+          setCommentList([...commentList, newComment])
+          setCommentCount(commentCount + 1)
+          setName("")
+          setComment("")
+        } 
+        else {
+          toast.error(data.message)
+        }
+      })
+      .catch(e => toast.error(e.message))
   }
 
   const handleCommentChange = (e) => {
@@ -91,7 +98,7 @@ function Book({ bookData }) {
               <textarea
                 type="text"
                 value={comment}
-                onChange={handleCommentChange} placeholder="comment" rows="10" cols="50" maxLength="500" required></textarea>
+                onChange={handleCommentChange} placeholder="comment" rows="10" cols="50" maxLength="500" required ></textarea>
             </div>
             <div>
               <button className={style.book__comment__sumbit_btn}>Submit</button>
